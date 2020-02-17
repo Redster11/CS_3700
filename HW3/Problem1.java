@@ -145,7 +145,7 @@ class Washer extends Thread {
                while (running || !washerQue.isEmpty()) {
                     final Sock[] temp = washerQue.poll(100, TimeUnit.MILLISECONDS);
                     if (temp != null)
-                         System.out.println(this.getName() + ": Destroyed " + temp[0].getName() + "socks");
+                         System.out.println(this.getName() + ": Destroyed " + temp[0].getName() + " Socks");
                }
           } catch (final InterruptedException e) {
                e.printStackTrace();
