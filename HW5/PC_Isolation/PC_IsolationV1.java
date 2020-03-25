@@ -94,7 +94,7 @@ public class PC_IsolationV1{
             {
                 while(running)
                 {
-                    //sleep(1000);//time to consume
+                    sleep(1000);//time to consume
                     Integer item = controller.remove();
                     if(item == null)
                         running = false;

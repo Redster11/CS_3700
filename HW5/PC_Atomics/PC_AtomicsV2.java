@@ -87,7 +87,7 @@ public class PC_AtomicsV2
                 this.positionProducer.incrementAndGet();
                 totalProduced.incrementAndGet();
                 this.size.incrementAndGet();
-                notifyAll();
+                notify();
                 return true;
             }
             else    
@@ -105,6 +105,10 @@ public class PC_AtomicsV2
                 }
                 if(this.que.get(this.positionConsumer.get()) == 0 || this.size.get() == 0)
                 {
+                    if(totalConsumed.get() == 100)
+                    {
+                        return 0;
+                    }
                     wait();
                 }
                 int item = this.que.get(this.positionConsumer.get());
@@ -113,7 +117,7 @@ public class PC_AtomicsV2
                 this.positionConsumer.incrementAndGet();
                 this.size.decrementAndGet();
                 
-                notifyAll();
+                notify();
                 return item;
             }
             return 0;
@@ -170,9 +174,9 @@ public class PC_AtomicsV2
             {
                 while(running)
                 {
-                //sleep(1000);//time to consume
+                sleep(1000);//time to consume
                 int item = controller.que.Remove();
-                if(item == 0)
+                if(totalConsumed.get() == itemsToProduce)
                     running = false;
                 else
                     System.out.println(this.getName() + " has Consumed the value " + item);
