@@ -29,6 +29,6 @@ public class singleThread
         singleThread sT = new singleThread();
         long sTime = System.currentTimeMillis();
         sT.run(1000000); 
-        System.out.println("The total Time elapsed: " + (System.currentTimeMillis() - sTime));
+        System.out.println("The total Time elapsed: " + (System.currentTimeMillis() - sTime)/1000F + " seconds");
     }
 }
