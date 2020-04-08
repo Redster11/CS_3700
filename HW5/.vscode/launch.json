@@ -1,0 +1,70 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ActorsV1",
+            "request": "launch",
+            "mainClass": "ActorsV1",
+            "projectName": "HW5_32acb8d7"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PC_AtomicsV1<HW5_32acb8d7>",
+            "request": "launch",
+            "mainClass": "PC_AtomicsV1",
+            "projectName": "HW5_32acb8d7"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PC_AtomicsV2<HW5_32acb8d7>",
+            "request": "launch",
+            "mainClass": "PC_AtomicsV2",
+            "projectName": "HW5_32acb8d7"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PC_IsolationV1<HW5_32acb8d7>",
+            "request": "launch",
+            "mainClass": "PC_IsolationV1",
+            "projectName": "HW5_32acb8d7"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PC_IsolationV2<HW5_32acb8d7>",
+            "request": "launch",
+            "mainClass": "PC_IsolationV2",
+            "projectName": "HW5_32acb8d7"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PC_LocksV1<HW5_32acb8d7>",
+            "request": "launch",
+            "mainClass": "PC_LocksV1",
+            "projectName": "HW5_32acb8d7"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PC_LocksV2<HW5_32acb8d7>",
+            "request": "launch",
+            "mainClass": "PC_LocksV2",
+            "projectName": "HW5_32acb8d7"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-singleThread<HW5_32acb8d7>",
+            "request": "launch",
+            "mainClass": "singleThread",
+            "projectName": "HW5_32acb8d7"
+        }
+    ]
+}
