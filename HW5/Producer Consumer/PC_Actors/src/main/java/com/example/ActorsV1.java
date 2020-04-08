@@ -166,16 +166,17 @@ public class ActorsV1
     }
     public static void main(String[] args) 
     {
-           System.out.println("5 Producers, 2 Consumers");
-           long Start_time = System.currentTimeMillis();
-           new ActorsV1(5, 2, 10, 100, 1000, false);
-           long end_time = System.currentTimeMillis() - Start_time;
-           System.out.println("time elapsed: " + end_time/1000F + " seconds"); 
+        System.out.println("Actors");
+        System.out.println("5 Producers, 2 Consumers");
+        long Start_time = System.currentTimeMillis();
+        new ActorsV1(5, 2, 10, 100, 1000, false);
+        long end_time = System.currentTimeMillis() - Start_time;
+        System.out.println("Total Time Elapsed: " + end_time/1000F + " seconds"); 
 
-           System.out.println("2 Producers, 5 Consumers");
-           Start_time = System.currentTimeMillis();
-           new ActorsV1(2, 5, 10, 100, 1000, false);
-           end_time = System.currentTimeMillis() - Start_time;
-           System.out.println("time elapsed: " + end_time/1000F + " seconds");
+        System.out.println("2 Producers, 5 Consumers");
+        Start_time = System.currentTimeMillis();
+        new ActorsV1(2, 5, 10, 100, 1000, false);
+        end_time = System.currentTimeMillis() - Start_time;
+        System.out.println("Total Time Elapsed: " + end_time/1000F + " seconds");
     }
 }

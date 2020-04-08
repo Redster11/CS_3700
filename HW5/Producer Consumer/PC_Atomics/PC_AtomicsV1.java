@@ -9,7 +9,7 @@ public class PC_AtomicsV1
     private AtomicInteger totalConsumed = new AtomicInteger(0);
     private AtomicInteger totalProduced = new AtomicInteger(0);
     private volatile boolean canProduce;
-    public PC_AtomicsV1(int numOfPro, int numOfCon, int MaxSize, int itemsProduced)
+    public PC_AtomicsV1(int numOfPro, int numOfCon, int MaxSize, int itemsProduced, boolean print)
     {
         this.itemsToProduce = itemsProduced;
         this.MaxSize = MaxSize;
@@ -19,14 +19,14 @@ public class PC_AtomicsV1
         int oneExtra = totalPerPro + (itemsProduced%numOfPro);
         Producer[] producers = new Producer[numOfPro];
         Consumer[] consumers = new Consumer[numOfCon];
-        producers[0] = new Producer(this, oneExtra, "Producer-0");
+        producers[0] = new Producer(this, oneExtra, "Producer-0", print);
         for(int i =1; i < numOfPro; i++)
         {
-            producers[i] = new Producer(this, totalPerPro, "Producer-"+i);
+            producers[i] = new Producer(this, totalPerPro, "Producer-"+i, print);
         }
         for(int i =0; i < numOfCon; i++)
         {
-            consumers[i] = new Consumer(this, "Consumer-"+i);
+            consumers[i] = new Consumer(this, "Consumer-"+i, print);
         }
         for(Producer pro: producers)
         {
@@ -127,12 +127,14 @@ public class PC_AtomicsV1
     {
         private AtomicInteger total, produced;
         private PC_AtomicsV1 controller;
-        Producer(PC_AtomicsV1 controller, int totalToMake, String name)
+        private boolean print;
+        Producer(PC_AtomicsV1 controller, int totalToMake, String name, boolean print)
         {
             this.total = new AtomicInteger(totalToMake);
             this.produced = new AtomicInteger(0);
             this.controller = controller;
             this.setName(name);
+            this.print = print;
         }
         @Override
         public void run()
@@ -146,7 +148,8 @@ public class PC_AtomicsV1
                     if(this.controller.que.Add(item))
                     {
                         produced.incrementAndGet();
-                        System.out.println(this.getName() + " has Produced the Value " + item);
+                        if(print)
+                            System.out.println(this.getName() + " has Produced the Value " + item);
                     }
                 }
             }
@@ -160,11 +163,13 @@ public class PC_AtomicsV1
     {
         private PC_AtomicsV1 controller;
         private boolean running;
+        private boolean print;
 
-        public Consumer(PC_AtomicsV1 controller, String name)
+        public Consumer(PC_AtomicsV1 controller, String name, boolean print)
         {
             this.controller = controller;
             this.setName(name);
+            this.print = print;
         }
         @Override
         public void run()
@@ -179,7 +184,8 @@ public class PC_AtomicsV1
                 if(totalConsumed.get() == itemsToProduce)
                     running = false;
                 else
-                    System.out.println(this.getName() + " has Consumed the value " + item);
+                    if(print)
+                        System.out.println(this.getName() + " has Consumed the value " + item);
                 }
             }
             catch(InterruptedException e)
@@ -191,9 +197,17 @@ public class PC_AtomicsV1
     }
     public static void main(String[] args) 
     {
+        System.out.println("Atomics");
+        System.out.println("5 Producers 2 Consumers");
         long timeS = System.currentTimeMillis();
-        PC_AtomicsV1 pc = new PC_AtomicsV1(5, 2, 10, 100);
+        PC_AtomicsV1 pc1 = new PC_AtomicsV1(5, 2, 10, 100, false);
         long timeE = System.currentTimeMillis();
         System.out.println("Total Time Elapsed " + (timeE - timeS)/1000F + " seconds");  
+
+        System.out.println("\n2 Producers 5 Consumers");
+        timeS = System.currentTimeMillis();
+        PC_AtomicsV1 pc2 = new PC_AtomicsV1(2, 5, 10, 100,false);
+        timeE = System.currentTimeMillis();
+        System.out.println("Total Time Elapsed " + (timeE - timeS)/1000F + " seconds"); 
     }
 }

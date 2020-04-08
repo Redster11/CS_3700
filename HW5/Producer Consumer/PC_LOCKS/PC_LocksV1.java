@@ -10,7 +10,7 @@ public class PC_LocksV1
 {
     private Queue<Integer> que = new LinkedList();
     private static final int Capacity = 10;
-
+    boolean print = false;
     private ReentrantLock lock = new ReentrantLock();
     private Condition stackEmptyCondition = lock.newCondition();
     private Condition stackFullCondition = lock.newCondition();
@@ -25,7 +25,8 @@ public class PC_LocksV1
                 stackFullCondition.await();
             }
             int rand = new Random().nextInt(100);
-            System.out.println(Thread.currentThread().getName() + " is Producing the value " + rand);
+            if(print)
+                System.out.println(Thread.currentThread().getName() + " is Producing the value " + rand);
             que.add(rand);
             stackEmptyCondition.signalAll();
         }
@@ -52,6 +53,9 @@ public class PC_LocksV1
         }
     }
     public static void main(String[] args) {
+        System.out.println("Locks");
+        System.out.println("2 Producers 5 Consumers");
+        boolean print = false;
         PC_LocksV1 object = new PC_LocksV1();
         final ExecutorService poolProducer = Executors.newFixedThreadPool(2);
         final ExecutorService poolConsumer = Executors.newFixedThreadPool(5);
@@ -75,7 +79,11 @@ public class PC_LocksV1
             {
                 try
                 {
-                    System.out.println(Thread.currentThread().getName() + " is Consuming the Value " + object.popFromQueue());
+                    if(print)
+                        System.out.println(Thread.currentThread().getName() + " is Consuming the Value " + object.popFromQueue());
+                    else
+                        object.popFromQueue();
+
                     Thread.sleep(1000); // 1 second to consume
                     if(i ==99)
                     {
