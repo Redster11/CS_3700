@@ -200,7 +200,7 @@ public class PC_AtomicsV1
         System.out.println("Atomics");
         System.out.println("5 Producers 2 Consumers");
         long timeS = System.currentTimeMillis();
-        PC_AtomicsV1 pc1 = new PC_AtomicsV1(5, 2, 10, 100, false);
+        PC_AtomicsV1 pc1 = new PC_AtomicsV1(5, 2, 10, 100, true);
         long timeE = System.currentTimeMillis();
         System.out.println("Total Time Elapsed " + (timeE - timeS)/1000F + " seconds");  
 
