@@ -1,0 +1,1 @@
+This is the loaction to put the Kafke main folder. the file can be found at http://kafka.apache.org/quickstart rename the file to kafke so that the code works
